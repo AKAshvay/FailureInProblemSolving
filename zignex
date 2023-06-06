@@ -1,0 +1,41 @@
+import java.util.HashSet;
+
+class Math{
+    public static String Match(String first[],String key[]){
+        // array is empty
+        HashSet<String> set=new HashSet<>();
+        for(String val:key) set.add(val);
+        String ans="";
+        for(String curr:first)
+        {
+            String currans="";
+            int lcount=0;
+            int dcount=0;
+
+            for(int i=0;i<curr.length();i++)
+            {
+                if(curr.charAt(i)>= 'a' && curr.charAt(i)<='z') lcount++;
+                if(curr.charAt(i)>=48 && curr.charAt(i)<=57) dcount++;
+            }
+
+            currans+=lcount;
+            if(curr.toLowerCase().contains("room")) currans+='1';
+            else currans+='0';
+            currans+=dcount;
+
+            if(set.contains(currans))
+                {
+                    currans=curr+'-'+currans+";";
+                    ans+=currans;
+                    break;
+                }
+        }
+        return ans;
+    }
+    public static void main(String[] args)
+    {
+        String arr[]={"RoOm 666","RooM 666","RoOm 665465"};
+        String key[]={"313","000","213"};
+        System.out.println(Match(arr,key));
+    }
+}
